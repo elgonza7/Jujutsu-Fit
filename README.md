@@ -12,13 +12,16 @@ Objetivo inicial: **UI 2D fluida + matemáticas de progresión balanceadas + gua
 - Modo **Invitado** con datos locales.
 - Vinculación de progreso local a cuenta Google al registrarse.
 - Guardado local protegido con **cifrado AES** (anti-edición manual de stats).
-- Protección adicional anti-cheat con **firma de integridad (HMAC)** del progreso y validación en sincronización de nube para detectar manipulación local.
+- Protección adicional anti-cheat con **firma HMAC-SHA256** del progreso.
+- Validación anti-cheat en dos capas durante sincronización:
+  - Cliente: verificación de integridad antes de subir datos.
+  - Nube: verificación al recibir datos (reglas + lógica backend) para rechazar progreso manipulado.
 
 ## 2) Guardado en la nube (arquitectura gratuita)
 
 Se prioriza:
 
-- **Firebase (Spark)** con Firestore/Realtime Database.
+- **Firebase (Spark) con Cloud Firestore** como base principal del MVP.
 - Reglas de seguridad por usuario para evitar sobrescritura cruzada.
 - Soporte offline (cache local + sincronización al reconectar).
 
@@ -46,7 +49,7 @@ Alternativas compatibles:
 - Creador de rutinas (superior, inferior, core, cardio).
 - Registro en vivo de peso, repeticiones y RPE.
 - Temporizador de descanso con notificaciones temáticas.
-- Estadísticas de sobrecarga progresiva (fuerza a lo largo de meses).
+- Estadísticas de sobrecarga progresiva (**progressive overload**) para visualizar fuerza a lo largo de meses.
 
 ## 5) Combates y misiones
 
