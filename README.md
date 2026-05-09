@@ -12,10 +12,11 @@ Objetivo inicial: **UI 2D fluida + matemáticas de progresión balanceadas + gua
 - Modo **Invitado** con datos locales.
 - Vinculación de progreso local a cuenta Google al registrarse.
 - Guardado local protegido con **cifrado AES** (anti-edición manual de stats).
+- Claves de cifrado gestionadas por almacenamiento seguro del dispositivo (Android Keystore / iOS Keychain) con derivación por usuario/dispositivo.
 - Protección adicional anti-cheat con **firma HMAC-SHA256** del progreso.
 - Validación anti-cheat en dos capas durante sincronización:
   - Cliente: verificación de integridad antes de subir datos.
-  - Nube: verificación al recibir datos (reglas + lógica backend) para rechazar progreso manipulado.
+  - Nube: reglas de seguridad de Firestore para rechazar escrituras inválidas fuera de los límites de integridad definidos.
 
 ## 2) Guardado en la nube (arquitectura gratuita)
 
@@ -49,7 +50,7 @@ Alternativas compatibles:
 - Creador de rutinas (superior, inferior, core, cardio).
 - Registro en vivo de peso, repeticiones y RPE.
 - Temporizador de descanso con notificaciones temáticas.
-- Estadísticas de sobrecarga progresiva (**progressive overload**) para visualizar fuerza a lo largo de meses.
+- Estadísticas de sobrecarga progresiva para visualizar fuerza a lo largo de meses.
 
 ## 5) Combates y misiones
 
