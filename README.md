@@ -12,6 +12,7 @@ Objetivo inicial: **UI 2D fluida + matemáticas de progresión balanceadas + gua
 - Modo **Invitado** con datos locales.
 - Vinculación de progreso local a cuenta Google al registrarse.
 - Guardado local protegido con **cifrado AES** (anti-edición manual de stats).
+- Protección adicional anti-cheat con **firma de integridad (HMAC)** del progreso y validación en sincronización de nube para detectar manipulación local.
 
 ## 2) Guardado en la nube (arquitectura gratuita)
 
