@@ -1,14 +1,22 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Crypto from 'expo-crypto';
 import * as SecureStore from 'expo-secure-store';
 import CryptoJS from 'crypto-js';
 
 const KEY_NAME = 'jjfit_encryption_key_v1';
 
+async function createSecureKey(): Promise<string> {
+  const randomBytes = await Crypto.getRandomBytesAsync(32);
+  return Array.from(randomBytes)
+    .map((value) => value.toString(16).padStart(2, '0'))
+    .join('');
+}
+
 async function getOrCreateKey(): Promise<string> {
   const existing = await SecureStore.getItemAsync(KEY_NAME);
   if (existing) return existing;
 
-  const generated = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  const generated = await createSecureKey();
   await SecureStore.setItemAsync(KEY_NAME, generated);
   return generated;
 }
